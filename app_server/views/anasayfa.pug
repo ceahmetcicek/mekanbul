@@ -1,80 +1,25 @@
 extends layout
-
+include fonksiyonlar/yildiz
 block content
   #banner.page-header
     .row
       .col-lg-6
         h1
-          | MekanBul
-          small &nbsp Civardaki Mekanları Keşfet!
+          | #{sayfaBaslik.siteAd}
+          small &nbsp; #{sayfaBaslik.slogan}
   .row
-    .rov.list-group
-    .col-xs-12.col-sm-12
-      .col-xs-12.list-group-item
-        h4
-          a(href='/mekan') Starbucks
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-default 10km
-        p.adress İyaş
-        p
-          span.label.label-warning Filtre Kahve
-          | &nbsp;
-          span.label.label-warning Türk Kahvesi
-          | &nbsp;
-          span.label.label-warning Tea Latte
-          | &nbsp;
-          span.label.label-warning Buzlu Çay
-          | &nbsp;
-          span.label.label-warning Atıştırmalıklar
-  
-    .rov.list-group
-    .col-xs-12.col-sm-12
-      .col-xs-12.list-group-item
-        h4
-          a(href='/mekan') Mackbear
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-default 1km
-        p.adress SDÜ Doğu Kampüsü
-        p
-          span.label.label-warning Cappuccino
-          | &nbsp;
-          span.label.label-warning Americano
-          | &nbsp;
-          span.label.label-warning White Chocolate Mocha
-          | &nbsp;
-          span.label.label-warning Caramel Milkshake
-          | &nbsp;
-          span.label.label-warning Mint Lemonade
-          | &nbsp;
-          span.label.label-warning Hot Chocolate 
-    .rov.list-group
-    .col-xs-12.col-sm-12
-      .col-xs-12.list-group-item
-        h4
-          a(href='/mekan') Gloria Jeans
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-          span.glyphicon.glyphicon-star-empty
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-default 1km
-        p.adress SDÜ Doğu Kampüsü
-        p
-          span.label.label-warning Filtre Kahve
-          | &nbsp;
-          span.label.label-warning Espresso
-          | &nbsp;
-          span.label.label-warning Iced Latte
-          | &nbsp;
-          span.label.label-warning Mozaik Pasta
+    each mekan in mekanlar
+      .rov.list-group
+      .col-xs-12.col-sm-12
+        .col-xs-12.list-group-item
+          h4
+            a(href='/mekan') #{mekan.ad}
+            small &nbsp;
+            +puanOlustur(mekan.puan)    
+
+          span.badge.pull-right.badge-default #{mekan.mesafe}
+          p.adress İyaş #{mekan.adres}
+          p
+            each imkan in mekan.imkanlar
+              span.label.label-warning #{imkan}
+              | &nbsp;
